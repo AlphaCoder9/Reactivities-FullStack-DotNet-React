@@ -1,6 +1,8 @@
 using System;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using Application.Activities.Queries;
+using Application.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,9 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 
 builder.Services.AddCors();
-
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<GetActivityList.Handler>()); //Scan the assembly/project that contains this type and register the MediatR handlers you find there
+builder.Services.AddAutoMapper(config =>
+    config.AddMaps(typeof(MappingProfiles).Assembly));
 var app = builder.Build();
 //Configure the HTTP request pipeline. fuzzy about order.
 
