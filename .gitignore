@@ -484,4 +484,4 @@ API/appsettings.json
 API/reactivities.db
 # SQLite temporary files
 *.db-shm
-*.db-wal
+*.db-walgit
